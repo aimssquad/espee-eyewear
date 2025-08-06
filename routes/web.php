@@ -49,7 +49,7 @@
 
     Route::get('user/register', [FrontendController::class, 'register'])->name('register.form');
     Route::post('user/register', [FrontendController::class, 'registerSubmit'])->name('register.submit');
-   
+
     // Reset password
     Route::get('password/reset', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
     Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
@@ -210,3 +210,12 @@
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
         Lfm::routes();
     });
+
+    Route::get('lang/{locale}', function ($locale) {
+        if (!in_array($locale, ['en', 'am', 'om'])) {
+            abort(400); // invalid language
+        }
+        session(['locale' => $locale]);
+        app()->setLocale($locale);
+        return redirect()->back(); // go back to previous page
+    })->name('lang.switch');

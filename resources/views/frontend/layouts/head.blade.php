@@ -2,6 +2,8 @@
 @yield('meta')
 <!-- Title Tag  -->
 <title>@yield('title')</title>
+
+<html lang="{{ app()->getLocale() }}">
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="images/favicon.png">
 <!-- Web Font -->
