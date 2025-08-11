@@ -587,9 +587,11 @@ dd {
 }
 
 img {
+	margin-top: -10px;
 	height: auto;
 	/* Make sure images are scaled correctly. */
-	max-width: 100%;
+	max-width: 95%;
+
 	/* Adhere to container width. */
 }
 

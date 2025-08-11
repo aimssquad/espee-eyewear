@@ -24,12 +24,12 @@
             <li><i class="ti-location-pin"></i> <a href="{{ route('order.track') }}">Track Order</a></li>
 
             {{-- Language Switcher --}}
-            <li>
+            <!-- <li>
                 🌐 Language:
                 <a href="{{ route('lang.switch', 'en') }}">EN</a> |
                 <a href="{{ route('lang.switch', 'am') }}">AM</a> |
                 <a href="{{ route('lang.switch', 'om') }}">OM</a>
-            </li>
+            </li> -->
 
             @auth
                 @if(Auth::user()->role == 'admin')
