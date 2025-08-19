@@ -1,35 +1,28 @@
 @extends('frontend.layouts.master')
 @section('title','ESPEE-EYEWEAR || HOME PAGE')
 @section('main-content')
-<!-- Slider Area -->
+<!-- Hero Banner -->
 @if(count($banners)>0)
-    <section id="Gslider" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
+    <section class="hero-area2">
+        <div class="home-slider owl-carousel">
             @foreach($banners as $key=>$banner)
-        <li data-target="#Gslider" data-slide-to="{{$key}}" class="{{(($key==0)? 'active' : '')}}"></li>
-            @endforeach
-
-        </ol>
-        <div class="carousel-inner" role="listbox">
-                @foreach($banners as $key=>$banner)
-                <div class="carousel-item {{(($key==0)? 'active' : '')}}">
-                    <img  src="{{$banner->photo}}" alt="First slide">
-                    <div class="carousel-caption d-none d-md-block text-left">
-                        <h1 class="wow fadeInDown">{{$banner->title}}</h1>
-                        <p>{!! html_entity_decode($banner->description) !!}</p>
-                        <a class="btn btn-lg ws-btn wow fadeInUpBig" href="{{route('product-grids')}}" role="button">Shop Now<i class="far fa-arrow-alt-circle-right"></i></i></a>
+                <div class="single-slider overlay" style="background-image:url('{{$banner->photo}}');">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="content">
+                                    <h1 class="title">{{$banner->title}}</h1>
+                                    <p class="des">{!! html_entity_decode($banner->description) !!}</p>
+                                    <div class="button">
+                                        <a class="btn" href="{{route('product-grids')}}">Shop Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             @endforeach
         </div>
-        <a class="carousel-control-prev" href="#Gslider" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#Gslider" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-        </a>
     </section>
 @endif
 
@@ -522,39 +515,34 @@
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5f2e5abf393162001291e431&product=inline-share-buttons' async='async'></script>
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5f2e5abf393162001291e431&product=inline-share-buttons' async='async'></script>
     <style>
-        /* Banner Sliding */
-        #Gslider .carousel-inner {
-        background: #000000;
-        color:black;
+        /* Hero Banner Overrides */
+        .hero-area2 .single-slider{
+            height: 550px;
+            position: relative;
+            background-size: cover;
+            background-position: center;
         }
-
-        #Gslider .carousel-inner{
-        height: 550px;
+        .hero-area2 .single-slider.overlay:before{
+            background: rgba(0,0,0,0.35) !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
         }
-        #Gslider .carousel-inner img{
-            width: 100% !important;
-            opacity: .8;
+        .hero-area2 .single-slider .content{
+            opacity: 1;
+            visibility: visible;
+            transform: none;
         }
-
-        #Gslider .carousel-inner .carousel-caption {
-        bottom: 60%;
+        .hero-area2 .single-slider .content .title{
+            font-size: 50px;
+            font-weight: 700;
+            color: #F7941D;
+            line-height: 1.1;
         }
-
-        #Gslider .carousel-inner .carousel-caption h1 {
-        font-size: 50px;
-        font-weight: bold;
-        line-height: 100%;
-        color: #F7941D;
-        }
-
-        #Gslider .carousel-inner .carousel-caption p {
-        font-size: 18px;
-        color: black;
-        margin: 28px 0 28px 0;
-        }
-
-        #Gslider .carousel-indicators {
-        bottom: 70px;
+        .hero-area2 .single-slider .content .des{
+            font-size: 18px;
+            color: #fff;
+            margin: 28px 0;
         }
     </style>
 @endpush
