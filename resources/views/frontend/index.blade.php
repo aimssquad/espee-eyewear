@@ -1,27 +1,24 @@
 @extends('frontend.layouts.master')
 @section('title','ESPEE-EYEWEAR || HOME PAGE')
 @section('main-content')
-<!-- Hero Banner -->
+<!-- Banner Grid (3-up) -->
 @if(count($banners)>0)
-    <section class="hero-area2">
-        <div class="home-slider owl-carousel">
-            @foreach($banners as $key=>$banner)
-                <div class="single-slider overlay" style="background-image:url('{{$banner->photo}}');">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="content">
-                                    <h1 class="title">{{$banner->title}}</h1>
-                                    <p class="des">{!! html_entity_decode($banner->description) !!}</p>
-                                    <div class="button">
-                                        <a class="btn" href="{{route('product-grids')}}">Shop Now</a>
-                                    </div>
-                                </div>
+    <section class="section banner-grid">
+        <div class="container">
+            <div class="row">
+                @foreach($banners as $key=>$banner)
+                    <div class="col-12 col-sm-6 col-lg-4 mb-4">
+                        <div class="banner-card">
+                            <div class="banner-image" style="background-image:url('{{$banner->photo}}');"></div>
+                            <div class="banner-content">
+                                <h3>{{$banner->title}}</h3>
+                                <p>{!! html_entity_decode($banner->description) !!}</p>
+                                <a class="btn" href="{{route('product-grids')}}">Shop Now</a>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </section>
 @endif
@@ -515,34 +512,37 @@
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5f2e5abf393162001291e431&product=inline-share-buttons' async='async'></script>
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5f2e5abf393162001291e431&product=inline-share-buttons' async='async'></script>
     <style>
-        /* Hero Banner Overrides */
-        .hero-area2 .single-slider{
-            height: 550px;
+        /* Banner Grid */
+        .banner-grid .banner-card{
             position: relative;
+            background: #111;
+            overflow: hidden;
+            border-radius: 6px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .banner-grid .banner-image{
+            padding-top: 56.25%;
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
         }
-        .hero-area2 .single-slider.overlay:before{
-            background: rgba(0,0,0,0.35) !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-            transform: none !important;
-        }
-        .hero-area2 .single-slider .content{
-            opacity: 1;
-            visibility: visible;
-            transform: none;
-        }
-        .hero-area2 .single-slider .content .title{
-            font-size: 50px;
-            font-weight: 700;
-            color: #F7941D;
-            line-height: 1.1;
-        }
-        .hero-area2 .single-slider .content .des{
-            font-size: 18px;
+        .banner-grid .banner-content{
+            padding: 20px;
             color: #fff;
-            margin: 28px 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.9) 100%);
+        }
+        .banner-grid .banner-content h3{
+            color: #F7941D;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        .banner-grid .banner-content p{
+            margin-bottom: 15px;
+        }
+        @media (min-width: 992px){
+            .banner-grid .banner-image{ padding-top: 66%; }
         }
     </style>
 @endpush
