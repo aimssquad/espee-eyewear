@@ -1,35 +1,25 @@
 @extends('frontend.layouts.master')
 @section('title','ESPEE-EYEWEAR || HOME PAGE')
 @section('main-content')
-<!-- Slider Area -->
+<!-- Banner Grid (3-up) -->
 @if(count($banners)>0)
-    <section id="Gslider" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            @foreach($banners as $key=>$banner)
-        <li data-target="#Gslider" data-slide-to="{{$key}}" class="{{(($key==0)? 'active' : '')}}"></li>
-            @endforeach
-
-        </ol>
-        <div class="carousel-inner" role="listbox">
+    <section class="section banner-grid">
+        <div class="container">
+            <div class="row">
                 @foreach($banners as $key=>$banner)
-                <div class="carousel-item {{(($key==0)? 'active' : '')}}">
-                    <img  src="{{$banner->photo}}" alt="First slide">
-                    <div class="carousel-caption d-none d-md-block text-left">
-                        <h1 class="wow fadeInDown">{{$banner->title}}</h1>
-                        <p>{!! html_entity_decode($banner->description) !!}</p>
-                        <a class="btn btn-lg ws-btn wow fadeInUpBig" href="{{route('product-grids')}}" role="button">Shop Now<i class="far fa-arrow-alt-circle-right"></i></i></a>
+                    <div class="col-12 col-sm-6 col-lg-4 mb-4">
+                        <div class="banner-card">
+                            <div class="banner-image" style="background-image:url('{{$banner->photo}}');"></div>
+                            <div class="banner-content">
+                                <h3>{{$banner->title}}</h3>
+                                <p>{!! html_entity_decode($banner->description) !!}</p>
+                                <a class="btn" href="{{route('product-grids')}}">Shop Now</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
-        <a class="carousel-control-prev" href="#Gslider" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#Gslider" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-        </a>
     </section>
 @endif
 
@@ -522,39 +512,37 @@
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5f2e5abf393162001291e431&product=inline-share-buttons' async='async'></script>
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5f2e5abf393162001291e431&product=inline-share-buttons' async='async'></script>
     <style>
-        /* Banner Sliding */
-        #Gslider .carousel-inner {
-        background: #000000;
-        color:black;
+        /* Banner Grid */
+        .banner-grid .banner-card{
+            position: relative;
+            background: #111;
+            overflow: hidden;
+            border-radius: 6px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
-
-        #Gslider .carousel-inner{
-        height: 550px;
+        .banner-grid .banner-image{
+            padding-top: 56.25%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
-        #Gslider .carousel-inner img{
-            width: 100% !important;
-            opacity: .8;
+        .banner-grid .banner-content{
+            padding: 20px;
+            color: #fff;
+            background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.9) 100%);
         }
-
-        #Gslider .carousel-inner .carousel-caption {
-        bottom: 60%;
+        .banner-grid .banner-content h3{
+            color: #F7941D;
+            font-size: 22px;
+            margin-bottom: 10px;
         }
-
-        #Gslider .carousel-inner .carousel-caption h1 {
-        font-size: 50px;
-        font-weight: bold;
-        line-height: 100%;
-        color: #F7941D;
+        .banner-grid .banner-content p{
+            margin-bottom: 15px;
         }
-
-        #Gslider .carousel-inner .carousel-caption p {
-        font-size: 18px;
-        color: black;
-        margin: 28px 0 28px 0;
-        }
-
-        #Gslider .carousel-indicators {
-        bottom: 70px;
+        @media (min-width: 992px){
+            .banner-grid .banner-image{ padding-top: 66%; }
         }
     </style>
 @endpush
