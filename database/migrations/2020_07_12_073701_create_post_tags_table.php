@@ -17,7 +17,7 @@ class CreatePostTagsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->enum('status',['active','inactive'])->default('active');
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }

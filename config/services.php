@@ -30,19 +30,19 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     'github' => [
-        'client_id' => 'YOUR_GITHUB_API', //Github API
-        'client_secret' => 'YOUR_GITHUB_SECRET', //Github Secret
+        'client_id' => 'YOUR_GITHUB_API', // Github API
+        'client_secret' => 'YOUR_GITHUB_SECRET', // Github Secret
         'redirect' => 'http://localhost:8000/login/github/callback',
-     ],
-     'google' => [
-        'client_id' => 'YOUR_GOOGLE_API', //Google API
-        'client_secret' => 'YOUR_GOOGLE_SECRET', //Google Secret
+    ],
+    'google' => [
+        'client_id' => 'YOUR_GOOGLE_API', // Google API
+        'client_secret' => 'YOUR_GOOGLE_SECRET', // Google Secret
         'redirect' => 'http://localhost:8000/login/google/callback',
-     ],
-     'facebook' => [
-        'client_id' => 'YOUR_FACEBOOK_API', //Facebook API
-        'client_secret' => 'YOUR_FACEBOK_SECRET', //Facebook Secret
+    ],
+    'facebook' => [
+        'client_id' => 'YOUR_FACEBOOK_API', // Facebook API
+        'client_secret' => 'YOUR_FACEBOK_SECRET', // Facebook Secret
         'redirect' => 'http://localhost:8000/login/facebook/callback',
-     ],
+    ],
 
 ];

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Banner;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class BannerController extends Controller
@@ -16,6 +16,7 @@ class BannerController extends Controller
     public function index()
     {
         $banners = Banner::latest('id')->paginate(10);
+
         return view('backend.banner.index', compact('banners'));
     }
 
@@ -32,7 +33,6 @@ class BannerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -79,13 +79,13 @@ class BannerController extends Controller
     public function edit($id)
     {
         $banner = Banner::findOrFail($id);
+
         return view('backend.banner.edit', compact('banner'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -145,7 +145,7 @@ class BannerController extends Controller
         $count = Banner::where('slug', $slug)->count();
 
         if ($count > 0) {
-            $slug = $slug . '-' . date('ymdis') . '-' . rand(0, 999);
+            $slug = $slug.'-'.date('ymdis').'-'.rand(0, 999);
         }
 
         return $slug;

@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\Category;
 use App\Models\Brand;
-
-use Illuminate\Support\Str;
+use App\Models\Category;
+use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -19,6 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::getAllProduct();
+
         return view('backend.product.index', compact('products'));
     }
 
@@ -31,13 +30,13 @@ class ProductController extends Controller
     {
         $brands = Brand::get();
         $categories = Category::where('is_parent', 1)->get();
+
         return view('backend.product.create', compact('categories', 'brands'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -111,7 +110,6 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

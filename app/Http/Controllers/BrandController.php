@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Brand;
-use Illuminate\Support\Str;
-use App\Helpers\helpers;
+use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
@@ -17,6 +15,7 @@ class BrandController extends Controller
     public function index()
     {
         $brands = Brand::latest('id')->paginate();
+
         return view('backend.brand.index', compact('brands'));
     }
 
@@ -33,7 +32,6 @@ class BrandController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -80,19 +78,16 @@ class BrandController extends Controller
     {
         $brand = Brand::find($id);
 
-        if (!$brand) {
+        if (! $brand) {
             return redirect()->back()->with('error', 'Brand not found');
         }
 
         return view('backend.brand.edit', compact('brand'));
     }
 
-
-
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -100,7 +95,7 @@ class BrandController extends Controller
     {
         $brand = Brand::find($id);
 
-        if (!$brand) {
+        if (! $brand) {
             return redirect()->back()->with('error', 'Brand not found');
         }
 
@@ -131,7 +126,7 @@ class BrandController extends Controller
     {
         $brand = Brand::find($id);
 
-        if (!$brand) {
+        if (! $brand) {
             return redirect()->back()->with('error', 'Brand not found');
         }
 

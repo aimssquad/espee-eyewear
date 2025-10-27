@@ -18,7 +18,7 @@ class CreatePostCommentsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('post_id')->nullable();
             $table->text('comment');
-            $table->enum('status',['active','inactive'])->default('active');
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->text('replied_comment')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');

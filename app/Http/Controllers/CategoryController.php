@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -15,6 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::getAllCategory();
+
         return view('backend.category.index', compact('categories'));
     }
 
@@ -26,13 +27,13 @@ class CategoryController extends Controller
     public function create()
     {
         $parent_cats = Category::where('is_parent', 1)->orderBy('title', 'ASC')->get();
+
         return view('backend.category.create', compact('parent_cats'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -83,13 +84,13 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $parent_cats = Category::where('is_parent', 1)->get();
+
         return view('backend.category.edit', compact('category', 'parent_cats'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -150,7 +151,6 @@ class CategoryController extends Controller
     /**
      * Get child categories by parent ID.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function getChildByParent(Request $request)
